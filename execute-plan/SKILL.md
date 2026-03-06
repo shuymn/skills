@@ -8,7 +8,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, TodoWrite]
 
 - `<skill-root>` means the directory containing this `SKILL.md`.
 - Resolve `scripts/...` and `references/...` relative to `<skill-root>`, not the caller's current working directory.
-- When executing local helpers, use explicit paths such as `<skill-root>/scripts/...`; shared helpers live under `<skill-root>/../_shared/...`.
+- When executing local helpers, use explicit paths such as `<skill-root>/scripts/...`.
 
 ## Mode Dispatch
 
