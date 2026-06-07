@@ -35,7 +35,7 @@ User: "Review our order API for extensibility."
 | 3 | **Separate what runs from what guides** | Execution (code) and judgment (instructions) live on different planes |
 | 4 | **Context is a budget** | Only summaries stay resident; details load on demand |
 | 5 | **Hooks, not hooks everywhere** | Named pipeline stages with clear precedence — not arbitrary interception |
-| 6 | **Multi-scope composition with provenance** | Personal, team, org, and package extensions compose; origin resolves conflicts |
+| 6 | **Fit-for-purpose configuration boundaries** | Configuration scopes match the application's ownership model; provenance resolves conflicts when multiple scopes are justified |
 | 7 | **Self-modification loop** | An agent can author an extension, apply it, and verify without a release cycle |
 | 8 | **Exploration over linearity** | Branching, retry, and alternate paths are first-class state |
 
@@ -64,13 +64,14 @@ Load reference files only when a lens needs depth.
 | Negative space | What should explicitly *not* live in core? | [negative-space-checklist.md](references/negative-space-checklist.md) |
 | Two planes | Is this execution logic or judgment guidance? | [code-vs-instructions.md](references/code-vs-instructions.md) |
 | Intervention | At which pipeline stage should extensions act? | [intervention-points.md](references/intervention-points.md) |
+| Configuration scope | Which configuration boundaries are actually justified here? | [configuration-scope.md](references/configuration-scope.md) |
 
 ### Step 4 — Recommend
 
 For each PARTIAL or MISSING principle, propose one concrete change. Prefer:
 
 - Declaring negative space over adding core features
-- A new hook or scope over a hardcoded branch
+- A new hook or justified configuration boundary over a hardcoded branch
 - An instruction-plane artifact over code when judgment changes often
 
 Format output per [review-output-format.md](references/review-output-format.md). Do not recommend copying any specific product's API — translate principles to the user's domain.

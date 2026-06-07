@@ -34,7 +34,7 @@ Prefer one semantic per hook. "Transform that sometimes handles" confuses author
 
 When multiple extensions attach to the same stage, document explicit ordering:
 
-1. **Scope priority** — org > project > user > package (or your domain's equivalent)
+1. **Scope priority** — derive precedence from real ownership boundaries; do not assume org/project/user/package unless those scopes exist in this domain
 2. **Handler beats transform** — if something fully handles an input, later transforms on that path do not run
 3. **Fail-closed vs fail-open** — state which hooks block by default (security hooks usually fail-closed)
 4. **Provenance for collisions** — disambiguate same-named extensions (`review:1`, `review:2` or source labels)
