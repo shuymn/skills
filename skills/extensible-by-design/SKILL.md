@@ -1,6 +1,6 @@
 ---
 name: extensible-by-design
-description: Design philosophy for AI-native software that agents and humans can extend without bloating core. Use when designing new products, reviewing architecture for extensibility, deciding what belongs in core vs extensions, choosing between code and instruction layers, or when the user asks to make software self-extensible, avoid feature bloat, or apply extensibility-by-design principles.
+description: Design philosophy for AI-native software that agents and humans can extend without bloating core. Use when designing new products, reviewing architecture for extensibility, deciding what belongs in core vs extensions, choosing between code and instruction layers, evaluating whether AI self-modification loops are possible, or when the user asks to make software self-extensible, avoid feature bloat, or apply extensibility-by-design principles.
 allowed-tools: [Read, Grep, Glob]
 ---
 
@@ -50,6 +50,10 @@ Identify: core runtime, primary user/agent loop, existing extension mechanisms (
 ### Step 2 — Score each principle
 
 For each principle, assign **STRONG**, **PARTIAL**, or **MISSING** with one sentence of evidence.
+
+**For existing systems:** STRONG = the system exhibits the principle in its current implementation; PARTIAL = partially present but incomplete or inconsistent; MISSING = absent.
+
+**For greenfield designs (not yet built):** STRONG = the design specifies a concrete mechanism that implements the principle; PARTIAL = acknowledged in the design but the mechanism is a placeholder or underspecified; MISSING = the principle is not addressed in the design at all.
 
 ### Step 3 — Apply decision lenses
 

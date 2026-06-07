@@ -92,16 +92,23 @@ These are not generic middleware — they are first-class pipeline operations ex
 For AI-native systems, verify this loop is possible:
 
 ```
-Author extension → Register / reload → Exercise in session → Inspect result → Revise
+Author extension → Register / reload → Exercise → Inspect result → Revise
 ```
+
+"Reload" means different things by system archetype:
+
+- **Interactive session systems** (agent harnesses, REPLs, IDEs): reload means in-process hot-reload at the registration boundary — the extension takes effect in the current session without restart.
+- **Batch / trigger systems** (CI/CD pipelines, job queues, request handlers): reload means the next invocation picks up the change — no full redeploy of the orchestrator, but a new run sees the updated extension.
+
+Both archetypes satisfy the principle. The mechanism differs; the test is whether an AI can author, register, exercise, and revise in a single contiguous workflow, not whether the reload is literally in-process.
 
 Hook design affects loop viability:
 
 - Hot reload at registration boundary (not only at process start)
-- Session state survives reload where safe
-- Footguns documented (e.g., replacing session mid-hook)
+- Session / job state survives reload where safe
+- Footguns documented (e.g., replacing a handler mid-execution for interactive systems; stale extension caches for batch systems)
 
-If the loop requires a full redeploy, extensibility is theoretical for agents.
+If the loop requires a **full redeploy of the core system**, extensibility is theoretical for agents. But "full redeploy of the orchestrator" is distinct from "next pipeline run picks up new config" — the latter is a valid self-modification loop for batch systems.
 
 ## Design Checklist
 
