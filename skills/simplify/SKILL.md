@@ -135,6 +135,8 @@ Focus: code reuse. Look for newly written logic that should use existing project
 
 ```
 Focus: code quality simplification. Look for redundant state, needless branching/nesting, copy-paste variants, hard-coded strings where constants/types already exist, unclear names, unnecessary comments, over-clever code, and opportunities to make the changed code clearer while preserving behavior.
+
+Pay special attention to LLM-ish leftovers after requirement/spec changes: redundant guards that only prove an old/removed spec path cannot happen, compatibility branches for behavior no longer supported, and explanatory comments like "we do not do X", "previously...", or "kept for compatibility". Flag them for removal only when the current code/spec/tests make the old path unreachable or irrelevant. Preserve comments that explain non-obvious business rules, external API quirks, or real constraints.
 ```
 
 **3. Efficiency**
