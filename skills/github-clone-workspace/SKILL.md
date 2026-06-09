@@ -1,6 +1,6 @@
 ---
 name: github-clone-workspace
-description: Clones public GitHub repository or /tree/<ref>/<directory> URLs into temporary local workspaces for code inspection. Use when the user provides a GitHub repo/tree URL and local read/search/bash inspection would help, especially when github_clone_workspace tool behavior is needed in runtimes without that tool.
+description: Clones public GitHub repository or /tree/<ref>/<directory> URLs into temporary local workspaces for code inspection. Use when the user provides a GitHub repo/tree URL and local read/search/bash inspection would help.
 allowed-tools: [Bash, Read, Grep, Glob]
 ---
 
@@ -12,7 +12,7 @@ allowed-tools: [Bash, Read, Grep, Glob]
 
 ## Scope
 
-Use this skill to clone a public GitHub repository into a temporary directory, then inspect it locally with read/search/bash tools. This is a skill version of the `github_clone_workspace` capability from the `add-dir` pi extension.
+Use this skill to clone a public GitHub repository into a temporary directory, then inspect it locally with read/search/bash tools.
 
 Supported URLs:
 
@@ -41,7 +41,7 @@ Unsupported URLs:
 
 2. Read the printed `path:` value.
 3. Use that absolute path for subsequent `Read`, `Grep`, `Glob`, or read-only `Bash` commands such as `find`/`ls`.
-4. Tell the user the registered workspace name/path you used.
+4. Tell the user the workspace name/path you used.
 5. When finished, run the printed cleanup command. If using `--json`, remove the printed `tempRoot` path.
 
 ## Behavior
@@ -50,7 +50,7 @@ The script:
 
 - clones with `git clone --depth 1 --filter=blob:none --single-branch`;
 - resolves `/tree/<ref>/<directory>` refs using `git ls-remote --heads --tags`;
-- registers the tree subdirectory as the effective inspection path;
+- uses the tree subdirectory as the effective inspection path;
 - rejects unsafe owner/repo/ref values and unsafe `--directory-name` values;
 - rejects URL subpaths that escape the cloned repository or do not resolve to directories;
 - times out git operations after 30 seconds;
