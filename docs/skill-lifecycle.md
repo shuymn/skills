@@ -21,7 +21,7 @@ tooling is verified to support nested category directories.
    change is shared repo tooling or catalog text.
 2. If the body links to `references/...` or `scripts/...`, keep the target file
    self-contained inside that skill directory.
-3. Run the repository checks before installing updated skills.
+3. Run the repository checks after changing skills.
 
 ## Evaluate a Skill
 
@@ -64,5 +64,7 @@ After changing skills or repository skill tooling:
 uv run --with pyyaml python scripts/test_validate_skill_frontmatter.py
 uv run --with pyyaml python scripts/validate_skill_frontmatter.py
 git diff --check
-skills add "$(pwd)/skills" -g -y -a codex -a claude-code --skill '*'
 ```
+
+Installing or reinstalling skills is intentionally outside the default
+maintenance flow. Do it only when the user explicitly asks for installation.
