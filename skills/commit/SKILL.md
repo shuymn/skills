@@ -52,14 +52,14 @@ Examples: `feat(auth): add OAuth2 login` · `fix(api): handle null user response
 
 ## Process
 
-1. **Analyze**: `git diff` — identify every logical unit before committing anything. If changes are mixed, plan separate commits. A subject that wants multiple scopes or `and` is a signal to split first. If grouping stays ambiguous after self-analysis, see **Identifying Meaningful Units**.
+1. **Analyze**: Inspect tracked and untracked changes before committing anything. Run `git status --short`, `git diff`, and `git diff --cached`; for every untracked file shown as `??`, inspect its contents or file type before deciding grouping. Do not ignore untracked files unless they are clearly generated, secrets, local scratch files, or unrelated; if excluding any untracked file, explicitly report why. Identify every logical unit. If changes are mixed, plan separate commits. A subject that wants multiple scopes or `and` is a signal to split first. If grouping stays ambiguous after self-analysis, see **Identifying Meaningful Units**.
 2. **Choose language** (see Language selection).
 3. **For each logical unit, separately:**
    - Stage only related files: `git add <specific-files>`, or use **Patch-Based Partial Staging** for partial changes within a file.
    - Verify: `git diff --cached` — ensure exactly one logical change is staged. If staging is wrong, stop and ask (see **Prohibited Commands**).
    - Draft the subject and run **Subject Sanity Checks**.
    - Commit: `git commit -m "<type>(<scope>): subject"` (or `git commit -m "<type>: subject"`), then confirm with `git log --oneline -1`.
-4. Repeat until all changes are committed.
+4. Repeat until all intended changes, including relevant untracked files, are committed. If any untracked files remain, report them and explain whether they were excluded intentionally or require user direction.
 
 **With `--branch`:** before staging (step 3), derive a descriptive branch name from the primary change (`<type>/<descriptive-name>`, no abbreviations) and create it with `git switch -c <name>`. Branch creation is mandatory when `--branch` is set. Base defaults to the current branch; with `--base=<branch>`, run `git switch <base>` first. Examples: `feature/add-oauth-support`, `fix/handle-null-values`.
 
