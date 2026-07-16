@@ -1,0 +1,4 @@
+interface:
+  display_name: "Goal Loop Engineering"
+  short_description: "Draft incremental Codex Goal prompts"
+  default_prompt: "Use $goal-loop-engineering to turn this engineering task into a copyable Codex Goal prompt with scoped checkpoints and verifiable completion."

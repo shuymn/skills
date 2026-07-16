@@ -22,6 +22,12 @@ skill directory.
 | --- | --- | --- |
 | `github-clone-workspace` | [`skills/github-clone-workspace`](skills/github-clone-workspace/) | Clones public GitHub repository or tree URLs into temporary local workspaces for inspection. |
 
+### Agent Workflow
+
+| Skill | Source | Description |
+| --- | --- | --- |
+| `goal-loop-engineering` | [`skills/goal-loop-engineering`](skills/goal-loop-engineering/) | Drafts incremental Codex Goal prompts with scoped checkpoints and verifiable stopping conditions. |
+
 ### Review And Quality
 
 | Skill | Source | Description |
