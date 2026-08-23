@@ -35,6 +35,7 @@ skill directory.
 | `adversarial-verify` | [`skills/adversarial-verify`](skills/adversarial-verify/) | Probes target files for vulnerabilities through edge cases, error paths, security boundaries, and concurrency attacks. |
 | `audit-agents-md` | [`skills/audit-agents-md`](skills/audit-agents-md/) | Audits and refines a `CLAUDE.md` or `AGENTS.md` file for instruction density, staleness, and effectiveness. |
 | `proofread` | [`skills/proofread`](skills/proofread/) | Reviews text for AI writing tropes and mechanical prose patterns, then reports concrete rewrite suggestions. |
+| `prune-tests` | [`skills/prune-tests`](skills/prune-tests/) | Prunes low-value, obsolete, or duplicate tests only after mapping and preserving their current regression protection. |
 | `simplify` | [`skills/simplify`](skills/simplify/) | Simplifies recently changed code by applying only behavior-preserving fixes. |
 
 ## Maintenance
