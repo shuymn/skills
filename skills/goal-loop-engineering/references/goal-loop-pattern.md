@@ -1,92 +1,40 @@
 # Goal Loop Pattern
 
-Use only the parts that change execution behavior. A Goal prompt does not need to fill a fixed template.
+Use only the parts that change execution behavior. The target runtime determines command syntax; this pattern determines the task content.
 
-## Choose `/goal` or `/plan`
+## Objective and boundaries
 
-Use `/goal` when the desired result, important constraints, and final verification are stable while Codex may choose the implementation path.
+Specify one durable, user-visible objective and observable final conditions. Include only paths, repro steps, current-state evidence, and task-specific constraints that can change the result. Express behavioral acceptance criteria with EARS where applicable.
 
-Recommend `/plan` first when the user wants to approve the approach before edits, or when an unresolved architecture, public API, migration policy, or product decision would materially change the Goal. Do not turn an open design decision into hidden implementation authority.
+Leave implementation choices to the executing agent when the outcome is stable. Resolve material design or approval decisions before drafting runnable work; a prompt cannot invent production, commit, push, or destructive authority.
 
-## Extract the useful pieces
+## Evidence-driven checkpoints
 
-- **Goal:** One durable, user-visible objective and its final stopping condition.
-- **Context:** Only paths, repro steps, current-state evidence, and sources that can change the result.
-- **Output:** The checkpoint update and final report the user needs to review.
-- **Boundaries:** The one or two task-specific constraints that prevent real damage or scope drift.
+A checkpoint is one coherent risk boundary, acceptance criterion, or failure cluster plus the evidence that closes it. Select checkpoints from dependency order and current evidence rather than fixed file counts or a rigid per-turn schedule.
 
-Point to `AGENTS.md` instead of copying its durable rules. Do not list standard commands the future agent can discover unless an exact command is contractually required or already verified.
+Ask the executing agent to establish the relevant baseline, make the smallest coherent change, and diagnose and retry in-scope failures until the checkpoint's decisive check passes. An evidence-backed no-change decision can close a checkpoint too.
 
-## Define checkpoints
+Use targeted validation within a checkpoint, affected-subsystem checks at its boundary, and the final regression set that proves the outcome. Broaden checks for shared-contract changes or unresolved risks rather than rerunning everything after every edit.
 
-Define one checkpoint as:
+## Progress and completion
 
-> one coherent risk boundary, acceptance criterion, or failure cluster + the smallest required change + the evidence that closes it
+Reuse an existing plan or log when durable checkpoint history is needed. Record evidence, material decisions or blockers, remaining final conditions, and the next candidate. Keep runtime Goal state authoritative for execution permission; progress notes do not grant it.
 
-Choose checkpoints dynamically from dependency order and current evidence. Combine files only when they share one cause and one validation path. Avoid arbitrary file-count or time-box boundaries.
+Continue through already-authorized checkpoints until every final condition has current evidence. One checkpoint or a first implementation is not the final gate. Avoid intermediate review pauses unless a new material decision or authority is required.
 
-## Define the per-turn loop
-
-Require each Goal turn to:
-
-1. Read the Goal, authoritative state, and latest progress record.
-2. Select one dependency-ready, independently verifiable checkpoint.
-3. Establish its baseline and state the proof required.
-4. Make one focused change or record an evidence-backed no-change decision.
-5. Run the narrowest decisive validation; diagnose and retry within the checkpoint if it fails.
-6. Record the result, remaining Goal conditions, and next candidate while leaving the Goal active if the final gate remains unmet.
-
-Do not require user steering between checkpoints unless new authority or a material decision is needed.
-
-## Use a validation ladder
-
-- **Inner loop:** The smallest test, type target, lint rule, query, replay, or smoke check tied to the change.
-- **Checkpoint gate:** The affected package or subsystem checks.
-- **Cross-cutting gate:** Broader checks only after shared contracts or multiple subsystems change.
-- **Final gate:** The complete regression set that proves the Goal outcome.
-
-Do not run the full suite after every edit. Do not advance while the current checkpoint's decisive check is failing.
-
-## Keep progress state small
-
-Reuse an existing plan, implementation log, issue checklist, or task tracker. Record only the checkpoint, evidence, material decision or blocker, remaining conditions, and next candidate.
-
-If no durable file exists, use Goal status unless a long run clearly needs a repo-local handoff artifact. Do not create competing plans or verbose diaries.
-
-## Define completion and blocking
-
-Keep the Goal active after a checkpoint succeeds while any final condition remains unmet. Complete only when every final condition has current evidence; time spent, partial green checks, or one completed checkpoint are insufficient.
-
-Treat the Goal as blocked only when safe in-scope investigation and useful fallbacks cannot progress without external state, new authority, or a material user decision. Name the missing fact or action and the exact resume condition.
+When safe in-scope work cannot progress without unavailable input or external state, report the blocker and exact resume condition using the runtime's waiting or pause mechanism. Honor runtime continuation limits and human-resume requirements.
 
 ## Assemble and prune
 
-Prefer this compact order:
+Keep the objective, essential context, checkpoint guidance, final conditions, and task-specific boundaries. Include a reporting shape only when the user needs one. Remove any sentence that does not change scope, checkpoint selection, verification, or required output.
 
-1. `/goal` and the final objective.
-2. Relevant source of truth or provisional context.
-3. Checkpoint selection and loop.
-4. Validation and final stopping condition.
-5. Task-specific boundaries.
-6. Checkpoint and final reporting shape.
+## Sources
 
-After drafting, remove any sentence that does not clarify the Goal, change how a checkpoint is selected or verified, prevent a likely failure, or define a required output.
+For current Codex Goal behavior, consult official documentation:
 
-## Avoid
-
-- attempting the whole Goal in one turn;
-- fixed backlogs that cannot adapt to evidence;
-- full regression checks after every small change;
-- marking the Goal complete after one checkpoint;
-- repeating `AGENTS.md` or generic approval rules;
-- inventing production, commit, push, or destructive authority;
-- claiming an external check passed when it was not run.
-
-## Official sources
-
-Refresh current product behavior from:
-
-- <https://learn.chatgpt.com/docs/prompting>
-- <https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6>
 - <https://learn.chatgpt.com/use-cases/follow-goals>
 - <https://learn.chatgpt.com/use-cases/iterate-on-difficult-problems>
+
+For instruction design, use concise triggers, branch-specific disclosure, explicit completion, and decision boundaries rather than elaborate recipes:
+
+- <https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra>

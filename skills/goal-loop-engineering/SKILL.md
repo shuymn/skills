@@ -1,34 +1,29 @@
 ---
 name: goal-loop-engineering
-description: "Use when asked to draft or rewrite a Codex /goal or long-running coding-task prompt with incremental checkpoints and verifiable completion. Does not execute the Goal."
+description: "Draft or rewrite pi /goal, Codex Goal, or long-running coding-task prompts with checkpoints and verifiable completion."
 allowed-tools: [Read, Grep, Glob, Bash]
 ---
 
 # Goal Loop Engineering
 
-Create a prompt for a future Codex Goal session. Never create, start, update, or execute the Goal itself.
+Create a copyable prompt for a future Goal session. Draft only; never create, start, update, or execute the Goal itself.
 
-## Resolve the task
+## Resolve the target and task
 
-Preserve the user's intended outcome. Inspect only workspace evidence that can change the prompt; current source and checks take precedence over earlier summaries.
+Use the user's specified runtime; otherwise use the current harness and available Goal contract. Ask one concise question if the target remains unclear. The model provider does not determine the runtime.
 
-Draft `/goal` when the outcome, important constraints, and final verification are clear enough for autonomous implementation. If an unresolved architecture, public-contract, or approval decision would materially change the Goal, explain the decision and recommend `/plan` first.
+Preserve the intended outcome. Inspect only workspace evidence that can change the prompt; current source and checks take precedence over earlier summaries.
 
-## Draft the prompt
+Draft a runnable Goal when the outcome, important constraints, and final verification are stable. If an unresolved architecture, public-contract, or approval decision would materially change the Goal, explain that decision and return a planning-only prompt instead. Use `/plan` only where the target supports it.
 
-Use [the Goal loop pattern](references/goal-loop-pattern.md) to specify:
+## Draft and format
 
-- One user-visible objective and an observable final stopping condition.
-- Evidence-driven checkpoints with targeted validation and in-scope diagnosis and retry.
-- A durable progress record, reusing an existing plan or log where available.
-- Task-specific boundaries; rely on `AGENTS.md` for standing repository rules.
+Use [the Goal loop pattern](references/goal-loop-pattern.md) for checkpoint boundaries, evidence, and the final stopping condition. Rely on `AGENTS.md` for standing repository rules.
 
-Completing one checkpoint does not complete the Goal. Continue until the final conditions have evidence or progress requires unavailable input, authority, or external state. Do not introduce review pauses between already-authorized checkpoints.
+Select only the relevant output contract:
 
-Remove generic process narration, discoverable command inventories, repeated prohibitions, and details that do not change execution.
+- **pi with the shuymn/pi-extensions Goal:** Read [the pi Goal format](references/pi-goal-format.md). Its command grammar is part of correctness, not a prose template.
+- **Codex Goal:** Return one copyable `/goal` prompt with the objective, necessary context, checkpoint guidance, and completion conditions. Verify official OpenAI documentation when current syntax, behavior, or citations are requested.
+- **Other long-running task:** Return a plain task prompt unless the target's command contract is known.
 
-## Output
-
-Lead with a short explanation of the checkpoint boundaries, then return one copyable prompt in the user's requested language. Start with `/goal` when ready; otherwise explain the missing decision and return the smallest useful `/plan` prompt.
-
-When asked for current Codex syntax, behavior, or citations, verify official OpenAI documentation rather than relying on the bundled reference alone.
+Lead with a short explanation of checkpoint boundaries, then the copyable output in the user's requested language. Before returning it, check that the target can parse it and every final condition has observable evidence. Remove process narration, discoverable command inventories, and repeated rules.
