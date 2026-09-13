@@ -1,6 +1,6 @@
 ---
 name: github-clone-workspace
-description: Clones public GitHub repository or /tree/<ref>/<directory> URLs into temporary local workspaces for code inspection. Use when the user provides a GitHub repo/tree URL and local read/search/bash inspection would help.
+description: Use when a public GitHub repo or tree URL needs local code inspection in a temporary workspace. Does not support blob URLs.
 allowed-tools: [Bash, Read, Grep, Glob]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: extensible-by-design
-description: Design philosophy for AI-native software that agents and humans can extend without bloating core. Use when designing new products, reviewing architecture for extensibility, deciding what belongs in core vs extensions, choosing between code and instruction layers, evaluating whether AI self-modification loops are possible, or when the user asks to make software self-extensible, avoid feature bloat, or apply extensibility-by-design principles.
+description: Use when reviewing extensibility or deciding boundaries between core, extensions, configuration, and agent instructions.
 allowed-tools: [Read, Grep, Glob]
 ---
 
@@ -9,22 +9,6 @@ allowed-tools: [Read, Grep, Glob]
 Software is not a finished artifact — it is a platform that AI and humans extend over time. The design question shifts from "what features to build" to **what to leave out of core and where to expose extension surfaces**.
 
 This skill is **application-agnostic**. It captures transferable design philosophy, not any single harness or framework.
-
-## When to Apply
-
-- Greenfield product or subsystem design
-- Architecture review: "Is core too fat? Are extension points missing?"
-- Choosing how to add a capability (core, plugin, config, playbook, hook)
-- Evaluating whether AI self-modification loops are possible
-
-## Quick start
-
-User: "Review our order API for extensibility."
-
-1. **Frame** — core = order CRUD + auth; extensions = none; discounts hardcoded in service layer.
-2. **Score** — rate all eight principles STRONG / PARTIAL / MISSING with one sentence each.
-3. **Lens** — load a reference only when needed (e.g. [intervention-points.md](references/intervention-points.md) for hook placement).
-4. **Deliver** — scorecard + prioritized recommendations using [review-output-format.md](references/review-output-format.md).
 
 ## Eight Principles
 
@@ -41,7 +25,7 @@ User: "Review our order API for extensibility."
 
 ## Workflows
 
-Run when the user asks for an extensibility review or during design discussions.
+For a focused design question, use only the relevant principles and lenses. For a full extensibility review, use the scorecard below.
 
 ### Step 1 — Frame the system
 
@@ -68,13 +52,13 @@ Load reference files only when a lens needs depth.
 
 ### Step 4 — Recommend
 
-For each PARTIAL or MISSING principle, propose one concrete change. Prefer:
+Recommend changes only where they serve a demonstrated extension need; a missing mechanism is not by itself a defect. Prefer:
 
 - Declaring negative space over adding core features
 - A new hook or justified configuration boundary over a hardcoded branch
 - An instruction-plane artifact over code when judgment changes often
 
-Format output per [review-output-format.md](references/review-output-format.md). Do not recommend copying any specific product's API — translate principles to the user's domain.
+For a full review, use [review-output-format.md](references/review-output-format.md). For a focused question, answer the decision and its trade-offs directly. Do not recommend copying any specific product's API — translate principles to the user's domain.
 
 ## Quick Decision Guide
 

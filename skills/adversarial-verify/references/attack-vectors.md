@@ -2,7 +2,7 @@
 
 Structured attack strategies for adversarial verification. Select categories relevant to the change area — do not blindly apply all categories.
 
-Vectors marked `[required]` define the minimum coverage baseline within a selected category. Non-required vectors are still applicable and should be probed when relevant; the tag does not grant skip permission. Tier-specific coverage obligations (how many `[required]` vectors must be covered) are defined in SKILL.md Step 4.
+Vectors marked `[required]` define the minimum coverage baseline within a selected category. Non-required vectors are still applicable and should be probed when relevant; the tag does not grant skip permission. Tier-specific coverage obligations are defined in [coverage and verdict rules](coverage.md).
 
 ## 1. Input Boundary Attacks
 
@@ -88,7 +88,7 @@ Match attack categories to the **semantic characteristics** of the change, not t
 | Communicates with external services or third-party systems | 2 (Error Handling), 4 (Concurrency), 6 (Rollback & Recovery) |
 | Controls feature flags, runtime configuration, or deployment toggles | 2 (Error Handling), 5 (State & Data Integrity), 6 (Rollback & Recovery) |
 
-Refer to the Change Rationale's `Defect Impact` and `Blast Radius` to determine category priority — prioritize categories whose attack surface overlaps with the stated defect impact and blast radius.
+Prioritize attack surfaces overlapping the change's defect impact and blast radius.
 
 ## Maintainer-Curated Extension Vectors
 

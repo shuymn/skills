@@ -2,7 +2,7 @@
 
 Last source check: **2026-07-28**.
 
-Load this reference when a verdict is disputed, an unusual test shape needs calibration, the user asks why the skill uses its gates, or the skill itself is being revised. The operational rules remain in `SKILL.md`; this file records why they exist.
+Use this reference for disputed verdicts or research rationale. Operational gates live in `../SKILL.md`; practical edge cases live in [decision cases](decision-cases.md). Source dates below are the existing research record, not a claim that sources were rechecked during an instruction-only revision.
 
 ## Synthesis
 
@@ -116,23 +116,6 @@ These are implementation examples, not research evidence.
 - **GitHub Awesome Copilot, Universal Janitor** (snapshot `b94ae92a`, 2026-07-28): [permalink](https://github.com/github/awesome-copilot/blob/b94ae92ab0a6fa695803f1b79b2e41a904a237db/agents/janitor.agent.md).
   - It recommends deleting obsolete, duplicate, flaky, or meaningless tests and validating removals. It does not define enough contract, risk, or equivalence evidence for safe deletion.
   - **Rejected pattern:** an aggressive deletion objective plus a green suite. The protection map and deletion gate replace it.
-
-## Decision Calibration
-
-| Candidate | Default verdict | Evidence that can change it |
-| --- | --- | --- |
-| Test still requiring behavior that an authoritative current decision removed | `DELETE` or `REWRITE` for replacement behavior | Incident, migration, or compatibility obligations may preserve part of its protection. |
-| Tautology or impossible property generator attached to a current high-risk contract | `REWRITE` | Delete only if the contract itself is retired or protected by a named equivalent test. |
-| Source grep asserting a removed private symbol stays absent | `DELETE` after the gate | A public build/artifact constraint or security scanner contract may justify `REWRITE`. |
-| Public endpoint must remain unavailable with `404`/`410` | `KEEP` | Delete only if the API/deprecation contract itself ended and consumers and risk owners confirm it. |
-| Unauthorized actor receives no protected field or side effect | `KEEP` | Usually high-risk negative-space protection; rewrite toward the public boundary if implementation-coupled. |
-| Duplicate parameter row with identical partition, observer, and break | `MERGE` after a fault probe | A boundary value, distinct diagnostic, or incident provenance makes it distinct. |
-| Unit and integration tests exercise the same business rule | Inspect, often `KEEP` both | Merge only when one adds no wiring, localization, or defense-in-depth value. |
-| Assertion-free test | Inspect | Expected exception, compile/type contract, or “does not crash” requirement can make it valid; otherwise rewrite/delete by gate. |
-| Flaky test | `REWRITE` or `ESCALATE` | Delete only when a separate deletion proof exists; flakiness may reveal a production race. |
-| Expected value computed by the implementation under test | `REWRITE` | Derive a literal/property/external oracle independently; passing and coverage do not rescue a mirrored oracle. |
-| Broad snapshot | `REWRITE` | Keep a reviewed golden artifact when exact output is the public contract. |
-| Generated test file | Edit generator | `ESCALATE` when the source generator or regeneration contract is unknown. |
 
 ## Limits
 
