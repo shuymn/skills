@@ -30,13 +30,13 @@ Unsupported URLs:
 1. Run the bundled script:
 
    ```sh
-   python <skill-root>/scripts/github_clone_workspace.py 'https://github.com/owner/repo'
+   uv run <skill-root>/scripts/github_clone_workspace.py 'https://github.com/owner/repo'
    ```
 
    Optional local clone directory name:
 
    ```sh
-   python <skill-root>/scripts/github_clone_workspace.py 'https://github.com/owner/repo/tree/main/packages/app' --directory-name repo-copy
+   uv run <skill-root>/scripts/github_clone_workspace.py 'https://github.com/owner/repo/tree/main/packages/app' --directory-name repo-copy
    ```
 
 2. Read the printed `path:` value.
