@@ -22,20 +22,11 @@ allowed-tools: [Read, Grep, Glob]
 - **Target** (required): One or more file paths, or inline text provided in the conversation.
 - **Focus** (optional): Specific trope categories to check. Defaults to all categories.
 
-## Procedure
+## Review
 
-1. **Load the relevant patterns**: Use [the tropes catalog](references/tropes.md). Read the requested categories for a focused review, or the full catalog for a general review.
+Check the text against [the tropes catalog](references/tropes.md): the requested categories for a focused review, the full catalog otherwise. Note each file's purpose (README, blog post, documentation), because context sets severity: one "Not X — it's Y" in a 3000-word post is fine; five is a problem.
 
-2. **Read the target text**: Read all target files or accept inline text. For each file, note its purpose (README, blog post, documentation, etc.) — context affects severity. A single "Not X — it's Y" in a 3000-word post is fine; five instances is a problem.
-
-3. **Scan for tropes**: Walk through the text looking for matches against the catalog. For each finding:
-   - Identify the trope category and specific pattern
-   - Quote the offending passage (keep quotes short — enough to locate, not full paragraphs)
-   - Judge binary: **finding** (should fix) or not a finding (skip — do not report)
-
-4. **Draft rewrite suggestions**: For every finding, suggest a concrete rewrite. Preserve the author's meaning while sounding like something a human would actually write. Do not over-polish — imperfect but natural beats pristine but robotic.
-
-5. **Produce the report**: List all findings with rewrite suggestions. Include a count at the top.
+Report only real findings. Each one names the category and pattern, quotes just enough to locate the passage, and gives a concrete rewrite that keeps the author's meaning and sounds like a person wrote it; imperfect but natural beats pristine but robotic.
 
 ## Output Format
 
