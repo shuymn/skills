@@ -1,29 +1,25 @@
 ---
 name: goal-loop-engineering
-description: "Draft or rewrite pi /goal, Codex Goal, or long-running coding-task prompts with checkpoints and verifiable completion."
+description: "Draft or rewrite pi /goal, Codex Goal, or long-running coding-task prompts."
 allowed-tools: [Read, Grep, Glob, Bash]
 ---
 
 # Goal Loop Engineering
 
-Create a copyable prompt for a future Goal session. Draft only; never create, start, update, or execute the Goal itself.
+Return a copyable prompt for a future session. Drafting does not authorize starting, updating, or executing the Goal.
 
-## Resolve the target and task
+## Shape the task
 
-Use the user's specified runtime; otherwise use the current harness and available Goal contract. Ask one concise question if the target remains unclear. The model provider does not determine the runtime.
+Preserve the user's outcome and define observable completion before prescribing a process. Use [the Goal loop pattern](references/goal-loop-pattern.md) to specify the completion contract, decision boundaries, and convergence guidance. Leave implementation strategy and work sequencing to the executing agent unless the task requires a particular order.
 
-Preserve the intended outcome. Inspect only workspace evidence that can change the prompt; current source and checks take precedence over earlier summaries.
+Use the requested runtime, or the current harness when it identifies the target unambiguously; the model provider is not the runtime. Inspect workspace evidence only where it affects the draft. Ask about missing decisions that materially change scope, public behavior, authority, or the output contract. Leave ordinary implementation choices open. If a prerequisite decision prevents a runnable Goal, return a planning-only prompt identifying the decision and the evidence needed to resolve it.
 
-Draft a runnable Goal when the outcome, important constraints, and final verification are stable. If an unresolved architecture, public-contract, or approval decision would materially change the Goal, explain that decision and return a planning-only prompt instead. Use `/plan` only where the target supports it.
+## Select the output contract
 
-## Draft and format
+- **pi with the shuymn/pi-extensions Goal:** Read [the pi Goal format](references/pi-goal-format.md) for its command grammar and execution boundaries.
+- **Codex Goal:** Return one copyable `/goal` prompt. Consult official documentation when current command syntax or runtime behavior needs confirmation; the pattern reference links to starting points.
+- **Other long-running task:** Return a plain task prompt unless its command contract is known. Use a planning command only when the target supports it.
 
-Use [the Goal loop pattern](references/goal-loop-pattern.md) for checkpoint boundaries, evidence, and the final stopping condition. Rely on `AGENTS.md` for standing repository rules.
+## Deliver
 
-Select only the relevant output contract:
-
-- **pi with the shuymn/pi-extensions Goal:** Read [the pi Goal format](references/pi-goal-format.md). Its command grammar is part of correctness, not a prose template.
-- **Codex Goal:** Return one copyable `/goal` prompt with the objective, necessary context, checkpoint guidance, and completion conditions. Verify official OpenAI documentation when current syntax, behavior, or citations are requested.
-- **Other long-running task:** Return a plain task prompt unless the target's command contract is known.
-
-Lead with a short explanation of checkpoint boundaries, then the copyable output in the user's requested language. Before returning it, check that the target can parse it and every final condition has observable evidence. Remove process narration, discoverable command inventories, and repeated rules.
+Return the prompt in the user's requested language, with a short explanation only for a material assumption or boundary. It is ready when the target can parse it, every completion condition has observable evidence, its authorization matches the request, and it distinguishes completion from stagnation or blocked work. Keep necessary context inside the copyable output or behind a reachable document pointer; rely on repository instructions for standing rules.
