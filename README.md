@@ -11,7 +11,6 @@ Personal agent skills.
 | [create-pr](skills/create-pr/) | Creates or updates GitHub pull requests from committed changes. |
 | [extensible-by-design](skills/extensible-by-design/) | Reviews boundaries between core, extensions, configuration, and agent instructions. |
 | [github-clone-workspace](skills/github-clone-workspace/) | Clones public GitHub repositories into temporary workspaces for inspection. |
-| [goal-loop-engineering](skills/goal-loop-engineering/) | Drafts pi or Codex Goal prompts with checkpoints and verifiable completion conditions. |
 | [proofread](skills/proofread/) | Reviews prose for AI writing tropes and suggests rewrites. |
 | [prune-tests](skills/prune-tests/) | Removes low-value tests while preserving regression protection. |
 | [simplify](skills/simplify/) | Simplifies code without changing behavior. |
