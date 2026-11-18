@@ -24,7 +24,7 @@ Stage explicit paths, then inspect the full cached diff before each commit. For 
 
 Use `type(scope): subject` or `type: subject`:
 - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `build`, `ci`.
-- Entire subject line ≤50 characters, no trailing period. English uses lowercase imperative wording; Japanese uses である調 and katakana for technical terms.
+- When drafting a new commit, aim for about 50 characters for the full subject line, including the type and any scope. No trailing period. English uses lowercase imperative wording; Japanese uses である調 and katakana for technical terms.
 - Scope, if present, names one area. Multiple scopes or English `and` signal a grouping review, not an automatic split of an inseparable change.
 
 Run relevant repository checks for the intended changes, reusing valid results when nothing affecting them has changed. Review the staged diff again after any repair or hook modification. Commit each intended unit and verify the resulting commit and remaining status. Continue until the requested scope is committed or a concrete blocker remains.
